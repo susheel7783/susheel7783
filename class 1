@@ -1,0 +1,902 @@
+#include <iostream>
+
+using namespace std;
+
+int main() {
+
+#ifndef ONLINE_JUDGE
+	freopen("input.txt", "r", stdin);
+	freopen("output.txt", "w", stdout);
+#endif
+	int n;
+	cin >> n;
+
+	// loop till n (rows)
+
+	for (int i = 1; i <= n; i++) {
+
+		//print spaces
+		for (int j = 0; j <= (n - i); j++) {
+			cout << " ";
+		}
+		int num = i;
+		for (int j = 0; j < i; j++) {
+			cout << num;
+			num++;
+		}
+		num -= 2;
+		// num = i ;
+		for (int j = 0; j < i - 1; j++) {
+			cout << num;
+			num--;
+		}
+
+		cout << endl;
+	}
+	return 0;
+}
+
+ 35  Class-01/test.cpp 
+@@ -0,0 +1,35 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <cstring>
+#include <map>
+#include <set>
+#include <unordered_map>
+#include <queue>
+#include <stack>
+#include <cmath>
+#include <functional>
+#include <deque>
+#include <bitset>
+#include <climits>
+#include <cstdio>
+#include <list>
+#include <iomanip>
+using namespace std;
+
+#define ll long long int
+#define mp make_pair
+#define pb push_back
+#define fi first
+#define pii pair<ll,ll>
+#define si second
+#define fastIO ios_base::sync_with_stdio;
+
+int main() {
+	fastIO
+#ifndef ONLINE_JUDGE
+	freopen("input.txt", "r", stdin);
+	freopen("output.txt", "w", stdout);
+#endif
+
+} 
+ BIN +55 KB Doubts/Pattern 
+Binary file not shown.
+ 46  Doubts/Pattern.cpp 
+@@ -0,0 +1,46 @@
+// Pattern.cpp
+#include <iostream>
+
+using namespace std;
+
+int main() {
+	int n = 6;
+	// cin >> n;
+	int temp = 5;
+	for (int i = 0; i < n; i++) {
+		temp = n;
+
+		for (int j = 0; j <= 2 * n; j++) {
+			if (i >= j) {
+				cout << temp-- << " ";
+			} else if (2 * n - j <= i) {
+				if (2 * n - j == i)temp++;
+				cout << temp++ << " ";
+			} else {
+				cout << "  ";
+			}
+		}
+		cout << endl;
+	}
+	temp = n;
+	for (int i = 0; i <= 2 * n; i++) {
+		cout << abs(temp--) << " ";
+	}
+	cout << endl;
+
+	for (int i = 0; i < n; i++) {
+		temp = n;
+
+		for (int j = 0; j <= 2 * n; j++) {
+			if (n - i > j) {
+				cout << temp-- << " ";
+			} else if (2 * n - j < n - i) {
+				if (2 * n - j == n - i - 1)temp++;
+				cout << temp++ << " ";
+			} else {
+				cout << "  ";
+			}
+		}
+		cout << endl;
+	}
+}
+ 22  class-06/reverse.cpp 
+@@ -0,0 +1,22 @@
+// reverse.cpp
+
+#include <iostream>
+
+using namespace std;
+
+
+int main() {
+
+	int n;
+	cin >> n;
+
+	int sum = 0;
+
+	while (n > 0) {
+		sum *= 10;
+		sum += (n % 10);
+		n /= 10;
+	}
+	cout << sum;
+
+} 
+ 24  class-07/Xor.cpp 
+@@ -0,0 +1,24 @@
+// Xor.cpp
+
+#include <iostream>
+
+using namespace std;
+
+
+int main() {
+
+	int n;
+	cin >> n;
+
+	int ans = 0;
+
+	for (int i = 1; i <= n; i++) {
+		int no;
+		cin >> no;
+
+		ans ^= no;
+
+	}
+	cout << ans;
+
+} 
+ 27  class-07/coutSetBits.cpp 
+@@ -0,0 +1,27 @@
+// coutSetBits.cpp
+#include <iostream>
+
+using namespace std;
+
+#define ll long long int
+#define mp make_pair
+#define pb push_back
+#define fi first
+
+int main() {
+
+	int n;
+	cin >> n;
+
+	int ans = 0;
+
+	while (n > 0) {
+		if (n & 1) {
+			ans++;
+		}
+
+		n >>= 1;
+	}
+	cout << ans;
+
+} 
+ 36  class-07/inputStream.cpp 
+@@ -0,0 +1,36 @@
+// inputStream.cpp
+
+#include <iostream>
+
+using namespace std;
+int main() {
+
+	int alphabets = 0, numbers = 0, blank_space = 0, other_char = 0, tab = 0;
+
+	char ch;
+
+	ch = cin.get();
+
+	while (ch != '$') {
+
+		if (ch >= 'A' && ch <= 'Z' || ch >= 'a' && ch <= 'z') {
+			alphabets++;
+		} else if (ch == ' ') {
+			blank_space++;
+		} else if (ch == '\t') {
+			tab++;
+		} else if (ch <= '9' && ch >= '0') {
+			numbers++;
+		} else {
+			other_char++;
+		}
+		ch = cin.get();
+	}
+
+	cout << "numbers: " << numbers << endl;
+	cout << "alphabets: " << alphabets << endl;
+	cout << "other_char: " << other_char << endl;
+	cout << "blank_space: " << blank_space << endl;
+	cout << "tab: " << tab << endl;
+
+}
+ 34  class-07/pattern-2.cpp 
+@@ -0,0 +1,34 @@
+// pattern - 2.cpp
+#include <iostream>
+
+using namespace std;
+
+
+int main() {
+
+	int n;
+	cin >> n;
+
+	for (int row = 1; row <= n; row++) {
+
+		for (int j = 1; j <= row; j++) {
+			cout << "*";
+		}
+		cout << " ";
+		for (int j = 1; j <= n - row + 1; j++) {
+			cout << "*";
+		}
+		cout << " ";
+		for (int j = 1; j <= n - row + 1; j++) {
+			cout << "*";
+		}
+		cout << " ";
+		for (int j = 1; j <= row; j++) {
+			cout << "*";
+		}
+
+		cout << endl;
+
+	}
+
+} 
+ 35  class-07/pattern.cpp 
+@@ -0,0 +1,35 @@
+#include <iostream>
+
+using namespace std;
+
+
+int main() {
+
+	int n;
+	cin >> n;
+
+	char ch = 'A';
+
+	for (int row = 1; row <= n; row++) {
+
+		// inc order till n-row +1
+		for (int j = 1; j <= n - row + 1; j++) {
+			cout << ch;
+			ch++;
+		}
+		// i'll do something
+
+		ch--;
+
+		// print dec. order
+
+		for (int j = 1; j <= n - row + 1; j++) {
+			cout << ch;
+			ch--;
+		}
+		cout << endl;
+
+	}
+
+
+}
+ 29  class-07/playground.cpp 
+@@ -0,0 +1,29 @@
+// playground.cpp
+#include<bits/stdc++.h>
+
+using namespace std;
+
+int main() {
+
+	int n;
+	cin >> n;
+	int arr[n];
+	for (int i = 0; i < n; i++) {
+		cin >> arr[i];
+	}
+
+	//selection sort
+
+	for (int i = 0; i < n - 1; i++) {
+		int min_ = i;
+		for (int j = i + 1; j < n; j++) {
+			if (arr[min_] > arr[j]) {
+				// swap(arr[i],arr[j]);
+				min_ = j;
+			}
+		}
+
+		swap(arr[min_], arr[i]);
+	}
+	for (int i = 0; i < n; i++)cout << arr[i] << " ";
+}
+ 22  class-08/arrays.cpp 
+@@ -0,0 +1,22 @@
+#include<iostream>
+
+using namespace std;
+
+int main()
+{
+	int n = 5;
+	int arr[n] = {};
+
+	// cout<<&arr[0];
+
+	for (int i = 0; i < n; i++) {
+		cin >> arr[i];
+	}
+
+	for (int i = 0; i < n; i++) {
+		cout << arr[i];
+	}
+	// cout<< arr[0] <<arr[1];
+
+	return 0;
+}
+ 34  class-08/bubbleSort.cpp 
+@@ -0,0 +1,34 @@
+// reverse.cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+
+	int n;
+	cin >> n;
+
+	int arr[n];
+
+	for (int i = 0; i < n; i++) {
+		cin >> arr[i];
+	}
+
+	for (int j = 0; j < n - 1; j++) { // n-1 => 5-1=> 4 // 4 iterations , 0,1,2,3
+		for (int i = 0; i < n - 1; i++) {
+
+			if (arr[i] > arr[i + 1]) {
+				// swap(arr[i], arr[i + 1]);
+				int temp = arr[i];
+				arr[i] = arr[i + 1];
+				arr[i + 1] = temp;
+			}
+		}
+	}
+
+	for (int i = 0; i < n; i++) {
+		cout << arr[i] << " ";
+	}
+
+
+
+} 
+ 20  class-08/reverse.cpp 
+@@ -0,0 +1,20 @@
+// reverse.cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+
+	int n;
+	cin >> n;
+
+	int arr[n];
+
+	for (int i = 0; i < n; i++) {
+		cin >> arr[i];
+	}
+
+	for (int i = n - 1; i >= 0; i--) {
+		cout << arr[i] << " ";
+	}
+
+} 
+ 35  class-08/selectionSort.cpp 
+@@ -0,0 +1,35 @@
+// selectionSort.cpp
+
+#include<iostream>
+
+using namespace std;
+
+int main()
+{
+	int n;
+	cin >> n;
+	int arr[n];
+
+	for (int i = 0; i < n; i++) {
+		cin >> arr[i];
+	}
+
+
+	for (int j = 0; j < n - 1; j++) {
+		int min = j;
+		for (int i = j + 1; i < n; i++) {
+
+			if (arr[min] > arr[i]) {
+				min = i;
+			}
+		}
+
+		swap(arr[j], arr[min]);
+	}
+
+	for (int i = 0; i < n; i++) {
+		cout << arr[i] << " ";
+	}
+
+	return 0;
+} 
+ 23  class-09/FToC.cpp 
+@@ -0,0 +1,23 @@
+// FToC.cpp
+
+#include<iostream>
+
+using namespace std;
+
+void FToC(int start, int end, int step) {
+
+
+	for (int i = start; i <= end ; i += step) {
+		cout << i << " " << (5 * (i - 32)) / 9 << endl;
+	}
+	return;
+}
+
+int main() {
+	int start, end , step;
+
+	cin >> start >> end >> step;
+
+
+	FToC(start, end, step);
+} 
+ 22  class-09/Largest.cpp 
+@@ -0,0 +1,22 @@
+// Largest.cpp
+#include<iostream>
+
+using namespace std;
+
+int main() {
+
+	int n;
+	cin >> n;
+
+	int arr[n];
+	for (int i = 0; i < n; i++)
+		cin >> arr[i];
+
+
+	int ans = INT_MIN;
+
+	for (int i = 0; i < n; i++) {
+		ans = max(arr[i], ans);
+	}
+	cout << ans;
+} 
+ 43  class-09/OptimizedBubbleSort.cpp 
+@@ -0,0 +1,43 @@
+// OptimizedBubbleSort.cpp
+
+#include <iostream>
+using namespace std;
+
+int main() {
+
+	int n;
+	cin >> n;
+
+	int arr[n];
+
+	for (int i = 0; i < n; i++) {
+		cin >> arr[i];
+	}
+
+	for (int j = 0; j < n - 1; j++) { // n-1 => 5-1=> 4 // 4 iterations , 0,1,2,3
+
+		bool f = false;
+		for (int i = 0; i < n - 1 - i; i++) {
+
+			if (arr[i] > arr[i + 1]) {
+				// swap(arr[i], arr[i + 1]);
+				int temp = arr[i];
+				arr[i] = arr[i + 1];
+				arr[i + 1] = temp;
+
+				f = true;
+			}
+		}
+
+		if (f == false) {
+			break;
+		}
+	}
+
+	for (int i = 0; i < n; i++) {
+		cout << arr[i] << " ";
+	}
+
+
+
+} 
+ 35  class-09/checkPrime.cpp 
+@@ -0,0 +1,35 @@
+// checkPrime.cpp
+#include <iostream>
+
+using namespace std;
+
+// bool check_prime(int);
+
+bool check_prime(int n) {
+	for (int i = 2; i < n; i++) {
+		if (n % i == 0) {
+			return 0; //false
+		}
+	}
+	return 1; //true
+}
+
+void print_all_prime(int n) {
+
+	for (int i = 2; i <= n; i++) {
+		if (check_prime(i)) {
+			cout << i << " ";
+		}
+	}
+	return;
+}
+
+int main() {
+	int n;
+	cin >> n;
+
+	print_all_prime(n);
+
+	return 0;
+}
+
+ 34  class-09/insertionSort.cpp 
+@@ -0,0 +1,34 @@
+// insertionSort.cpp
+#include<bits.stdc++.h>
+
+using namespace std;
+
+int main() {
+
+	// int n;
+	// cin>>n;
+	int n = 5;
+	int arr[] = {5, 4, 3, 2, 1};
+
+
+	for (int i = 1; i < n; i++) {
+
+		int pc = arr[i];
+		for (int j = i - 1; j >= 0; j--) {
+
+			if (arr[j] > pc) {
+				arr[j + 1] = arr[j];
+			} else {
+				break;
+			}
+		}
+
+		arr[j + 1] = pc;
+	}
+
+
+	for (int i = 0; i < n; i++) {
+		cout << arr[i] << " ";
+	}
+
+} 
+ 12  class-09/playground.cpp 
+@@ -0,0 +1,12 @@
+// playground.cpp
+
+#include<iostream>
+
+using namespace std;
+
+int main() {
+
+	cout << 7 / 2;
+}
+
+
+ 42  class-09/switch.cpp 
+@@ -0,0 +1,42 @@
+// switch.cpp
+
+#include<bits/stdc++.h>
+
+using namespace std;
+
+int main()
+{
+
+	char ch;
+
+	cin >> ch;
+
+	switch (ch) {
+	case 'n':
+	case 'N':
+		cout << "North" << endl;
+		break;
+	case 'e':
+	case 'E':
+		cout << "East" << endl;
+		break;
+	default :
+		cout << "Invalid input";
+	}
+
+	int a = 5, i = 0;
+
+	// if(a==5){
+	// 	i++;
+	// }else{
+	// 	i--;
+	// }
+
+	// int b;
+
+	int b = (a == 5 ? i + 1 : i - 1);   // (condition) ? (if true) : (if false);
+
+	cout << b << " " << i;
+
+	return 0;
+} 
+ BIN +50 KB class-10/findMissingEle 
+Binary file not shown.
+ 31  class-10/findMissingEle.cpp 
+@@ -0,0 +1,31 @@
+// findMissingEle.cpp
+
+#include <iostream>
+
+using namespace std;
+
+int main() {
+
+	int arr[] = {1, 0, 2, 4, 5};
+	int n = 5;
+
+
+	int sum = 0, actualSum = 0;
+
+	// for (int i = 0; i < n; i++) {
+	// 	actualSum += arr[i];
+	// }
+
+	// sum = (n * (n + 1)) / 2;
+
+	int x = 0;
+
+	for (int ele = 0; ele <= n; ele++) {
+		x ^= ele;
+	}
+	for (int i = 0; i < n; i++) {
+		x ^= arr[i];
+	}
+	cout << x << endl;
+	// cout << sum - actualSum << endl;
+} 
+ BIN +55.2 KB class-10/newYear 
+Binary file not shown.
+ 49  class-10/newYear.cpp 
+@@ -0,0 +1,49 @@
+// newYear.cpp
+
+#include <iostream>
+using namespace std;
+
+void solve(int *arr, int n) {
+	int bribe = 0;
+
+	for (int i = n; i >= 2; i--) { //0
+
+		if (arr[i - 1] != i) { // 1=1
+			if (arr[i - 2 - 1] == i) {
+
+				swap(arr[i - 2 - 1], arr[i - 1 - 1]);
+				swap(arr[i - 1 - 1], arr[i - 1]);
+				bribe += 2;
+
+			} else if (arr[i - 1 - 1] == i) {
+
+				swap(arr[i - 1 - 1], arr[i - 1]);
+				bribe += 1;
+
+			} else {
+				cout << "Too chaotic" << endl;
+				return;
+			}
+		}
+	}
+
+	cout << bribe << endl;
+}
+
+int main() {
+
+	int t;
+	cin >> t;
+	while (t--) {
+		int n;
+		cin >> n;
+		int arr[n];
+		for (int i = 0; i < n; i++) {
+			cin >> arr[i];
+		}
+
+		solve(arr, n);
+	}
+
+
+} 
+ BIN +55 KB class-10/passby 
+Binary file not shown.
+ 26  class-10/passby.cpp 
+@@ -0,0 +1,26 @@
+// passby.cpp
+#include<iostream>
+
+using namespace std;
+
+int updateByValue(int a) {
+	// cout << a << " ";
+	a++;
+	return a;
+}
+
+void updateByRef(int &a) {
+	a++;
+}
+
+int main() {
+
+	int a = 1;
+
+	cout << a << endl;
+
+	updateByValue(a);
+	// updateByRef(a);
+
+	cout << a << endl;
+} 
+ BIN +50.3 KB class-10/stockPrice 
+Binary file not shown.
+ 26  class-10/stockPrice.cpp 
+@@ -0,0 +1,26 @@
+// stockPrice.cpp
+
+#include <iostream>
+using namespace std;
+
+int main() {
+
+	int prices[100000] = {7, 5, 6, 1, 5, 9};
+	int n = 6;
+
+
+	int profit = 0;
+	int min_price = 9999999;
+
+	for (int day = 0; day < n; day++) {
+		// if (min_price > prices[day]) {
+		// 	min_price = prices[day];
+		// } else {
+		// 	profit = max(profit, prices[day] - min_price);
+		// }
+		min_price = min(min_price, prices[day]);
+		profit = max(profit, prices[day] - min_price);
+	}
+
+	cout << profit << endl;
+}
+ BIN +55.1 KB class-10/subArray 
+Binary file not shown.
+ 25  class-10/subArray.cpp 
+@@ -0,0 +1,25 @@
+// subArray.cpp
+
+#include<iostream>
+
+using namespace std;
+
+int main() {
+
+	int arr[] = {1, 2, 3};
+	int n = 3;
+
+	int k = 3;
+
+	int ans = 0;
+
+	for (int i = 0; i < n; i++) {
+		int sum = 0;
+		for (int j = i; j < n; j++) {
+			sum += arr[j];
+			if (sum == k)
+				ans++;
+		}
+	}
+	cout << ans << endl;
+}
+ BIN +50 KB class-10/target 
+Binary file not shown.
+ 30  class-10/target.cpp 
+@@ -0,0 +1,30 @@
+// target.cpp
+
+#include <iostream>
+
+using namespace std;
+
+int main() {
+	int arr[] = {1, 2, 4, 5, 1000};
+	int n = 5;
+	int target = 2000;
+
+	if (arr[n - 1] < target) {
+		cout << n << endl;
+		return 0;
+	}
+	for (int i = 0; i < n; i++) {
+		if (arr[i] >= target) {
+			cout << i << endl;
+			break;
+		}
+		// else if (arr[i] > target) {
+		// 	cout << i << endl;
+		// 	break;
+		// }
+	}
+	// if(arr[n-1]<target){
+	// 	cout<<n<<endl;
+	// }
+	return 0;
+} 
+0 comments on commit 6dda6eb
