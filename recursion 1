@@ -1,0 +1,177 @@
+class-15/factorialRecursion.cpp 
+@@ -0,0 +1,16 @@
+// factorialRecursion.cpp
+
+#include<iostream>
+using namespace std;
+
+int fact(int n) {
+	// base case
+	if (n == 0)
+		return 1;
+	// int chotaProb = fact(n - 1);
+	return n * fact(n - 1);
+}
+
+int main() {
+	cout << fact(5);
+} 
+ 18  class-15/fibonacciRecursion.cpp 
+@@ -0,0 +1,18 @@
+// fibonacciRecursion.cpp
+
+#include<iostream>
+using namespace std;
+
+int fib(int n) {
+	// base
+
+	if (n == 1 || n == 0)
+		return n;
+	// recursive case
+
+	return fib(n - 1) + fib(n - 2);
+}
+
+int main() {
+	cout << fib(10);
+} 
+ 29  class-15/isSorted.cpp 
+@@ -0,0 +1,29 @@
+// isSorted.cpp
+#include<iostream>
+using namespace std;
+
+bool isSorted(int arr[], int n) {
+	// base
+	if (n == 1 || n == 0) {
+		return true;
+	}
+
+	// recursive case
+
+	bool isChotaArraySorted = isSorted(arr + 1, n - 1);
+
+	if (isChotaArraySorted && arr[0] <= arr[1])
+		return true;
+	return false;
+}
+
+int main() {
+
+	int arr[] = {1, 2, 100, 5, 6};
+	int n = 5;
+
+	if (isSorted(arr, n))
+		cout << "YES";
+	else
+		cout << "NO";
+} 
+ 26  class-15/printIncAndDec.cpp 
+@@ -0,0 +1,26 @@
+// printIncAndDec.cpp
+#include <iostream>
+
+using namespace std;
+
+void printDec(int n) {
+	// base
+	if (n == 0)
+		return;
+	cout << n << " ";
+	printDec(n - 1);
+}
+
+void printInc(int n) {
+	// base
+	if (n == 0)
+		return;
+	printInc(n - 1);
+	cout << n << " ";
+}
+int main() {
+	int n = 5;
+	printDec(5);
+	cout << endl;
+	printInc(5);
+} 
+ 37  class-15/spiralPrint.cpp 
+@@ -0,0 +1,37 @@
+// spiralPrint.cpp
+#include<iostream>
+
+using namespace std;
+
+int main() {
+	int arr[100][100];
+
+	int val = 1, n = 4, m = 4;
+
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < m; j++) {
+			arr[i][j] = val++;
+		}
+	}
+
+	int sr = 0, er = n - 1, sc = 0, ec = m - 1;
+
+	while (sr <= er && sc <= ec) {
+		// print sr from sc to ec
+		for (int col = sc; col <= ec; col++)
+			cout << arr[sr][col] << " ";
+		sr++;
+		// print ec from sr to er
+		for (int row = sr; row <= er; row++)
+			cout << arr[row][ec] << " ";
+		ec--;
+		//print er from ec to sc
+		for (int col = ec; col >= sc; col--)
+			cout << arr[er][col] << " ";
+		er--;
+		// print sc from er to sr
+		for (int row = er; row >= sr; row--)
+			cout << arr[row][sc] << " ";
+		sc++;
+	}
+} 
+ 39  class-15/sum.cpp 
+@@ -0,0 +1,39 @@
+// sum.cpp
+#include<iostream>
+using namespace std;
+
+int sum(int arr[], int n) {
+	// base
+	if (n == 0)
+		return 0;
+	// recursive case (f(n)=arr[0]+f(arr+1,n-1))
+
+	return arr[0] + sum(arr + 1, n - 1);
+}
+int sum1(int arr[], int n) {
+	// base
+	if (n == 0)
+		return 0;
+	// recursive case (f(n)=arr[0]+f(arr+1,n-1))
+
+	return arr[n - 1] + sum1(arr, n - 1);
+}
+
+int sum2(int arr[], int n, int i) {
+	// base
+	if (n == i)
+		return 0;
+	// recursive case (f(n)=arr[0]+f(arr+1,n-1))
+
+	return arr[i] + sum2(arr, n , i + 1);
+}
+
+int main() {
+
+	int arr[5] = {1, 2, 3, 4, 5};
+	int n = 5;
+	cout << sum(arr, n) << endl;
+	cout << sum1(arr, n) << endl;
+	cout << sum2(arr, n, 0) << endl;
+
+} 
