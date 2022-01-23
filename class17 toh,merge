@@ -1,0 +1,168 @@
+#include<iostream>
+
+using namespace std;
+
+void merge(int *a, int *b, int*c, int n, int m) {
+	int i = 0, j = 0, k = 0;
+
+	while (i < n && j < m) {
+		if (b[i] < c[j])
+			a[k++] = b[i++];
+		else a[k++] = c[j++];
+	}
+
+	while (i < n)a[k++] = b[i++];
+
+	while (j < m)a[k++] = c[j++];
+}
+
+int main() {
+	int b[100] = {1, 2, 3}, c[100] = {1, 2, 3, 9};
+	int a[100];
+
+	merge(a, b, c, 3, 4);
+	for (int i = 0; i < 7; i++) {
+		cout << a[i] << " ";
+	}
+} 
+ 63  class-17/mergeSort.cpp 
+@@ -0,0 +1,63 @@
+// mergeSort.cpp
+#include<iostream>
+
+using namespace std;
+
+void merge(int *a, int *b, int*c, int s, int e) {
+	int mid = (s + e) / 2;
+
+	int i = s, j = mid + 1, k = s;
+
+	while (i <= mid && j <= e) {
+		if (b[i] < c[j])
+			a[k++] = b[i++];
+		else a[k++] = c[j++];
+	}
+
+	while (i <= mid)a[k++] = b[i++];
+
+	while (j <= e)a[k++] = c[j++];
+}
+
+void mergeSort(int a[], int s, int e) {
+	//base case
+	if (s >= e) {
+		return;
+	}
+	//recursion
+
+	//divide in two arrays
+	int mid = (s + e) / 2;
+	int b[100], c[100];
+	for (int i = s; i <= mid; i++) {
+		b[i] = a[i];
+	}
+	for (int i = mid + 1; i <= e; i++) {
+		c[i] = a[i];
+	}
+
+	mergeSort(b, s, mid);
+	mergeSort(c, mid + 1, e);
+
+	merge(a, b, c, s, e);
+}
+
+int main() {
+	// int b[100] = {1, 2, 3}, c[100] = {1, 2, 3, 9};
+	int a[100] = {5, 4, 3, 2, 1};
+	int n = 5;
+
+	// merge(a, b, c, 3, 4);
+	mergeSort(a, 0, n - 1);
+
+	for (int i = 0; i < 5; i++) {
+		cout << a[i] << " ";
+	}
+}
+
+
+
+
+
+
+
+ 23  class-17/permute.cpp 
+@@ -0,0 +1,23 @@
+// permute.cpp
+#include <iostream>
+using namespace std;
+
+void permute(char*inp , int i) {
+	//base case
+	if (inp[i] == '\0') {
+		cout << inp << endl;
+		return;
+	}
+	//recursive call
+	for (int j = i; inp[j] != '\0'; j++) {
+		swap(inp[i], inp[j]);
+		permute(inp, i + 1);
+		swap(inp[i], inp[j]); //backtracking
+	}
+}
+
+int main() {
+	char inp[100] = "ABC";
+	permute(inp, 0);
+
+} 
+ 27  class-17/subseq.cpp 
+@@ -0,0 +1,27 @@
+// subseq.cpp
+#include <iostream>
+using namespace std;
+
+void subseq(char *inp, char *out, int i, int j) {
+	// base case
+	if (inp[i] == '\0') {
+		out[j] = '\0';
+		cout << out << endl;
+		return;
+	}
+
+	//recursive case
+	// 1) excluding char
+	subseq(inp, out, i + 1, j);
+
+	//2) include char
+	out[j] = inp[i];
+	subseq(inp, out, i + 1, j + 1);
+}
+
+int main() {
+	char inp[100] = "ABC";
+	char out[100];
+	subseq(inp, out, 0, 0);
+
+} 
+ 20  class-17/toh.cpp 
+@@ -0,0 +1,20 @@
+// toh.cpp
+#include <iostream>
+using namespace std;
+
+void toh(int n, char src, char helper, char dest) {
+	if (n == 0) {
+		return;
+	}
+
+	//move n-1 plates from src to helper with the help of dest
+	toh(n - 1, src, dest, helper);
+	//moving 1 plate from src to dest
+	cout << "moving " << n << " from " << src << " to " << dest << endl;
+	// move n-1 plates from helper to dest with the help of src
+	toh(n - 1, helper, src, dest);
+}
+
+int main() {
+	toh(4, 'A', 'B', 'C');
+} 
