@@ -1,0 +1,175 @@
+// NStair.cpp
+#include <iostream>
+
+using namespace std;
+
+int ways(int n) {
+	if (n == 0)
+		return 1;
+	if (n < 0)
+		return 0;
+	return ways(n - 1) + ways(n - 2) + ways(n - 3);
+}
+int Nways(int n, int k) {
+	//base case
+	if (n == 0)
+		return 1;
+	if (n < 0)
+		return 0;
+	//recursive case
+	int ans = 0;
+	for (int i = 1; i <= k; i++) {
+		ans += Nways(n - i, k);
+	}
+	return ans;
+}
+int main() {
+
+	cout << Nways(4, 3);
+
+} 
+ 67  class-18/mQueen.cpp 
+@@ -0,0 +1,67 @@
+// mQueen.cpp
+#include <iostream>
+using namespace std;
+
+bool isPossible(int board[][10], int i, int j, int n) {
+
+	for (int k = 0; k < n; k++) {
+		if (board[k][j] == 1 || board[i][k] == 1) {
+			return false;
+		}
+	}
+
+	// check right diagonal
+	int x = i, y = j;
+
+	while (i >= 0 && j < n) {
+		if (board[i][j] == 1)
+			return false;
+		i--;
+		j++;
+	}
+	i = x, j = y;
+
+	// check left diagonal
+	while (i >= 0 && j >= 0) {
+		if (board[i][j] == 1)
+			return false;
+		i--;
+		j--;
+	}
+
+	return true;
+}
+
+bool nQueen(int board[][10], int i, int n) {
+	// base case
+
+	if (i == n) {
+		for (int j = 0; j < n; j++) {
+			for (int k = 0; k < n; k++) {
+				cout << board[j][k] << " ";
+			}
+			cout << endl;
+		}
+		cout << endl;
+		return false;
+	}
+	//recursive case
+
+	for (int j = 0; j < n; j++) {
+		if (isPossible(board, i, j, n)) {
+			board[i][j] = 1;
+			bool kyaBakipossibleHai = nQueen(board, i + 1, n);
+			if (kyaBakipossibleHai) {
+				return true;
+			}
+			board[i][j] = 0;
+		}
+	}
+	return false;
+}
+
+int main() {
+	int board[10][10] = {0};
+	int n = 5;
+	nQueen(board, 0, n);
+} 
+ 23  class-18/numberName.cpp 
+@@ -0,0 +1,23 @@
+// numberName.cpp
+
+#include <iostream>
+
+using namespace std;
+
+char names[][6] = {
+	"zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"
+};
+
+void numberName(int n) {
+	if (n == 0)
+		return;
+	numberName(n / 10);
+	int x = n % 10;
+	cout << names[x] << " ";
+}
+
+int main() {
+	// char name[][];
+	// if(n==0)cout<<"zero";
+	numberName(1003);
+} 
+ 49  class-18/ratInAMaze.cpp 
+@@ -0,0 +1,49 @@
+// ratInAMaze.cpp
+#include <iostream>
+
+using namespace std;
+
+bool sol[][10] = {0};
+
+bool ratInAMaze(char maze[][5], int i, int j, int n, int m) {
+	if (i == n - 1 && j == m - 1) {
+		sol[i][j] = 1;
+		for (int k = 0; k < n; k++) {
+			for (int l = 0; l < m; l++) {
+				cout << sol[k][l] << " ";
+			}
+			cout << endl;
+		}
+		cout << endl;
+		return false;
+	}
+	sol[i][j] = 1;
+	//right
+	if (j + 1 < m && maze[i][j + 1] == 'O') {
+		bool kyaBakiJaSktaHuMe = ratInAMaze(maze, i, j + 1, n, m);
+		if (kyaBakiJaSktaHuMe)
+			return true;
+	}
+
+	// down
+	if (i + 1 < n && maze[i + 1][j] == 'O') {
+		bool kyaBakiJaSktaHuMe = ratInAMaze(maze, i + 1, j, n, m);
+		if (kyaBakiJaSktaHuMe) {
+			return true;
+		}
+	}
+	sol[i][j] = 0;
+	return false;
+}
+
+int main() {
+
+	char maze[][5] = {
+		"OOOO",
+		"OOXX",
+		"OOOO",
+		"XXOO"
+	};
+	int n = 4, m = 4;
+	ratInAMaze(maze, 0, 0, n, m);
+} 
