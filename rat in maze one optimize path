@@ -1,0 +1,47 @@
+#include<iostream>
+using namespace std;
+bool sol[][100]={0};
+bool ratInMaze(char maze[1000][1000],int i,int j,int n,int m){
+    if(i==n-1 && j==m-1){
+        sol[i][j]=1;
+        for(int k=0;k<n;k++){
+            for(int l=0;l<m;l++){
+                cout<<sol[k][l]<<" ";
+            }
+            cout<<endl;
+        }
+        return true;
+        //cout<<endl;
+       // return false;
+       // sol[i][j]=0;
+    }
+     sol[i][j]=1;
+    //right
+    if(j+1<m && maze[i][j+1]=='0'){
+        bool kyaBakiJaSaktahuMe=ratInMaze(maze,i,j+1,n,m);
+        if(kyaBakiJaSaktahuMe)
+            return true;
+        
+    }
+        //down
+        if(i+1<n && maze[i+1][j]=='0'){
+            bool kyaBakiJaSaktahuMe=ratInMaze(maze,i+1,j,n,m);
+            if(kyaBakiJaSaktahuMe)
+                return true;
+            
+        }
+        sol[i][j]=0;
+        return false;
+    }
+
+int main(){
+    int n,m;
+    cin>>n>>m;
+    char maze[1000][1000];
+    for(int i=0;i<n;i++){
+        for(int j=0;j<m;j++){
+            cin>>maze[i][j];
+    }
+}
+ratInMaze(maze,0,0,n,m);
+}
