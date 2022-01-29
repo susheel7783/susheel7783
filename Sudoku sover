@@ -1,0 +1,35 @@
+#include<iostream>
+using namespace std;
+void staircase(int arr[1000][1000],int n,int m,int key){
+    int i=0,j=m-1;
+    while(i<n && j>=0){
+        if(arr[i][j]==key){
+        cout<<"position"<<i<<" "<<j;
+            return;
+        }
+        if(arr[i][j]<key)
+            i++;
+            else
+            j--;
+        }
+            cout<<"not found";
+        return;
+    
+}
+int main(){
+    int value=1;
+    int arr[1000][1000];
+            for(int i=0;i<10;i++){
+                for(int j=0;j<10;j++){
+                    arr[i][j]=value++;
+                }
+            }  
+            for(int i=0;i<10;i++){
+                for(int j=0;j<10;j++){
+                    cout<<arr[i][j]<<" ";
+                }  
+                cout<<endl;
+            }
+        int key=100;
+        staircase(arr,10,10,key);
+    }
