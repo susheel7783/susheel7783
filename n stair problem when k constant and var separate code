@@ -14,7 +14,7 @@ int NoOfWays(int n,int k){
     return 1;
     if(n<0)
     return 0;
-    int ans=1;
+    int ans=0;
     for(int i=1;i<=k;i++){
         ans=ans+NoOfWays(n-i,k);
     }
