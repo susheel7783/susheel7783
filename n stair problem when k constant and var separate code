@@ -1,0 +1,26 @@
+//stair problem
+#include<iostream>
+using namespace std;
+int nWays(int n){
+    if(n==0)       //when k fixed let k=3 maximum jump
+    return 1;
+    if(n<0)
+    return 0;
+    return nWays(n-1)+nWays(n-2)+nWays(n-3);
+}
+//when k is variable
+int NoOfWays(int n,int k){
+    if(n==0)
+    return 1;
+    if(n<0)
+    return 0;
+    int ans=1;
+    for(int i=1;i<=k;i++){
+        ans=ans+NoOfWays(n-i,k);
+    }
+    return ans;
+}
+int main(){
+    cout<<4<<endl;
+    cout<<NoOfWays(4,3);
+}
