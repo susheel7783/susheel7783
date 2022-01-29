@@ -1,0 +1,13 @@
+//stair problem
+#include<iostream>
+using namespace std;
+int nWays(int n){
+    if(n==0)
+    return 1;
+    if(n<0)
+    return 0;
+    return nWays(n-1)+nWays(n-2)+nWays(n-3);
+}
+int main(){
+    cout<<nWays(5);
+}
