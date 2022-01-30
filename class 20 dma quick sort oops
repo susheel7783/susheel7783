@@ -1,0 +1,341 @@
+// DMA.cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+
+	// int n;
+	// cin >> n;
+	// int *arr = new int[n];
+
+	// for (int i = 0; i < n; i++) {
+	// 	arr[i] = i + 1;
+	// }
+	// for (int i = 0; i < n; i++)
+	// {
+	// 	cout << arr[i] << " ";
+	// }
+	// cout << endl;
+	// delete[] arr;
+	// arr = NULL;
+	// for (int i = 0; i < n; i++)
+	// {
+	// 	cout << arr[i] << " ";
+	// }
+	// int *a = new int;
+	// *a = 10;
+	// delete a;
+	// a = NULL;
+	// cout << *a;
+
+	int *arr = new int [100];
+	int *temp = arr;
+	for (int i = 0; i < 100; i++)arr[i] = i;
+	arr = arr + 1;
+	delete[] arr;
+	arr = NULL;
+
+	// cout << temp ;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+ 40  class-20/quickSort.cpp 
+@@ -0,0 +1,40 @@
+// quickSort.cpp
+#include<iostream>
+
+using namespace std;
+
+int pivot(int arr[], int s, int e) {
+
+	int i = s - 1;
+	for (int j = s; j <= e - 1; j++) {
+		if (arr[j] < arr[e])
+		{
+			i++;
+			swap(arr[i], arr[j]);
+		}
+	}
+
+	swap(arr[i + 1], arr[e]);
+	return i + 1;
+
+}
+
+void quickSort(int arr[], int s, int e) {
+	if (s >= e)
+		return;
+	int p = pivot(arr, s, e);
+
+	quickSort(arr, s, p - 1);
+	quickSort(arr, p + 1, e);
+}
+
+int main() {
+
+	int arr[] = {5, 4, 3, 2, 1};
+	quickSort(arr, 0, 4);
+
+	for (int i = 0; i < 5; i++) {
+		cout << arr[i] << " ";
+	}
+
+}
+ 38  class-20/staircase.cpp 
+@@ -0,0 +1,38 @@
+// staircase.cpp
+#include<iostream>
+
+using namespace std;
+
+void staircase(int arr[][5], int n, int m, int key) {
+
+	int i = 0, j = m - 1;
+	while (i < n && j >= 0) {
+
+		if (arr[i][j] == key)
+		{
+			cout << "Position of key is " << i << " " << j;
+			return;
+		}
+
+		if (arr[i][j] < key)
+			i++;
+		else
+			j--;
+	}
+
+	cout << "key not found";
+	return;
+}
+
+int main() {
+
+	int arr[][5] = {
+		{1, 2, 3, 4},
+		{5, 6, 7, 8},
+		{9, 10, 11, 12},
+		{13, 14, 15, 16}
+	};
+	int key = 200;
+	staircase(arr, 4, 4, key);
+
+} 
+ 41  class-20/string.cpp 
+@@ -0,0 +1,41 @@
+// string.cpp
+#include <iostream>
+
+using namespace std;
+
+int main() {
+	string s("hello world"); //1st method
+	string s1 = "hello world1";
+	s = s1;
+	string x = "hello";
+	string x1 = "hello1";
+
+	// int ans = x.compare(x1);
+
+	// if (ans > 0) {
+	// 	cout << "X is greater";
+	// } else if (ans == 0) {
+	// 	cout << "X and x1 are same";
+	// } else {
+	// 	cout << "x1 is greater";
+	// }
+	string a[5];  // 2D string
+
+	// for(int i=0;i<n;i++){
+	// 	cin>>a[i];
+	// }
+
+	// x.push_back('d');
+	// x.push_back('e');
+	// x.pop_back();
+	// x.clear();
+	// cout << x.substr(1, 1);
+	// x += "world";  // x=x+"world";
+	// x = "world" + x;
+
+	x.erase(0, 1);
+	cout << x;
+
+
+
+}
+ 39  class-21/2DDMA.cpp 
+@@ -0,0 +1,39 @@
+// 2DDMA.cpp
+#include <iostream>
+
+using namespace std;
+
+int main() {
+
+	// int n;
+	// cin>>n;
+	// int arr[n];
+	// int *arr=new int[n];
+
+
+	int n, m, number = 0;
+	cin >> n >> m;
+	int **arr = new int*[n];
+
+	for (int i = 0; i < n; i++) {
+		arr[i] = new int[m];
+	}
+
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < m; j++) {
+			arr[i][j] = number++;
+		}
+	}
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < m; j++) {
+			cout << arr[i][j] << " ";
+		}
+		cout << endl;
+	}
+
+	for (int i = 0; i < n; i++) {
+		delete[] arr[i];
+	}
+	delete[] arr;
+	arr = NULL;
+} 
+ 122  class-21/class.cpp 
+@@ -0,0 +1,122 @@
+// class.cpp
+
+
+#include <iostream>
+
+using namespace std;
+
+/////////////////BLUE PRINT/////////////////
+class Car {
+public:
+	string name;
+	int price;
+	int milage;
+	int *model;
+
+	//default constructor
+	Car() {
+		cout << "calling default constructor" << endl;
+
+	}
+
+	// parameterized constructor
+	Car(string n, int p, int m, int *mo) {
+		cout << "calling parameterized constructor" << endl;
+		name = n;
+		price = p;
+		milage = m;
+
+		model = new int[4];
+		for (int i = 0; i < 4; i++)
+			model[i] = mo[i];
+	}
+
+	// Car(String n,int p){
+
+	// }
+
+	//copy constructor
+
+	Car(Car &X) {
+		name = X.name;
+		milage = X.milage;
+		price = X.price;
+		model = new int[4];
+		for (int i = 0; i < 4; i++) {
+			model[i] = X.model[i];
+		}
+	}
+
+	// default copy assignment operator
+	void operator=(Car X) {
+		cout << "calling operator" << endl;
+		name = X.name;
+		milage = X.milage;
+		price = X.price;
+		model = new int[4];
+		for (int i = 0; i < 4; i++) {
+			model[i] = X.model[i];
+		}
+
+	}
+
+	~Car() {
+		cout << name << " calling desructor" << endl;
+		delete[] model;
+		model = NULL;
+	}
+
+	void print() {
+		cout << "Name: " << name << endl;
+		cout << "Price: " << price << endl;
+		cout << "Milage: " << milage << endl;
+		cout << "Model: ";
+		for (int i = 0; i < 4; i++) {
+			cout << model[i];
+		}
+		cout << endl << endl;
+	}
+};
+/////////////////!!BLUE PRINT/////////////////
+
+int main() {
+
+///////////////////////MAKING OBJ/////////////////////
+	int arr[] = {1, 2, 3, 4};
+	// Car A;
+	Car A("BMW", 1000, 10, arr);
+	Car B("BMW1", 1000, 10, arr);
+	Car C("BMW2", 1000, 10, arr);
+
+	// Car B("Maruti", 100, 20, arr);
+	// Car C(B);   //copy
+	// Car D; //object is made
+	// D = A; //assignment
+	// B.model[0] = 9;
+	// Car C(B);
+	// A.name = "BMW";
+	// A.price = 1000;
+	// A.milage = 10;
+
+	// B.name = "Maruti";
+	// B.price = 100;
+	// B.milage = 20;
+///////////////////////!!MAKING OBJ/////////////////////
+	// D.model[3] = 9;
+	// A.print();
+	// B.print();
+	// C.print();
+	// D.print();
+	// A.name = "BMW2";
+
+	// A.print();
+	// cout << "Name: " << A.name << endl;
+	// cout << "Price: " << A.price << endl;
+	// cout << "Milage: " << A.milage << endl << endl;
+
+
+
+	// cout << "Name: " << B.name << endl;
+	// cout << "Price: " << B.price << endl;
+	// cout << "Milage: " << B.milage << endl;
+} 
