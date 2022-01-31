@@ -1,0 +1,53 @@
+// { Driver Code Starts
+#include <bits/stdc++.h>
+using namespace std;
+
+
+ // } Driver Code Ends
+//User function template for C++
+class Solution{
+public:	
+		
+	string removeDups(string s) 
+	{
+	    // Your code goes here
+	   string str="";
+    for(int i=0;i<s.length();i++){
+        if(str.find(s[i])==-1){
+            str=str+s[i];
+        }
+        else{
+            continue;
+        }
+    }
+    return str;
+
+	}
+};
+
+// { Driver Code Starts.
+
+
+int main() 
+{
+   	
+
+   	ios_base::sync_with_stdio(0);
+    cin.tie(NULL);
+    cout.tie(NULL);
+   
+   	int t;
+   	cin >> t;
+   	while(t--)
+   	{
+   		string s;
+   		cin >> s;
+
+   		
+   		Solution ob;
+   		cout << ob.removeDups(s) << "\n";
+   		
+   	}
+
+    return 0;
+}  // } Driver Code Ends
