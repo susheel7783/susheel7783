@@ -1,0 +1,68 @@
+// { Driver Code Starts
+#include <bits/stdc++.h>
+using namespace std;
+
+ // } Driver Code Ends
+//User function Template for C++
+
+class Solution {
+public:
+vector<vector<string>> allPalindromicPerms(string S) {
+        // code here
+        auto is_palindromic = [&S](int len)
+        {
+          for(int i=0, j=len-1; i<j; i++, j--)
+          {
+              if(S[i]!=S[j])
+                return false;
+          }
+          return true;
+        };
+        
+        vector<vector<string>> ans;
+        for(int i=1; i<=S.size(); i++)
+        {
+            if(is_palindromic(i))
+            {
+                if(i==S.size())
+                {
+                    ans.push_back({S.substr(0,i)});
+                }
+                else
+                {
+                    for(auto&& v: allPalindromicPerms(S.substr(i)) )
+                    {
+                        v.insert(v.begin(), S.substr(0,i));
+                        ans.push_back(v);
+                    }
+                }
+            }
+        }
+        
+        return ans;
+}
+};
+
+// { Driver Code Starts.
+int main() {
+    int t;
+    cin >> t;
+    while (t--) {
+        string S;
+        
+        cin>>S;
+
+        Solution ob;
+        vector<vector<string>> ptr = ob.allPalindromicPerms(S);
+        
+        for(int i=0; i<ptr.size(); i++)
+        {
+            for(int j=0; j<ptr[i].size(); j++)
+            {
+                cout<<ptr[i][j]<<" ";
+            }
+            cout<<endl;
+        }
+    }
+    return 0;
+}  // } Driver Code Ends
