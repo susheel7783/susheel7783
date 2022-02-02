@@ -1,0 +1,36 @@
+// { Driver Code Starts
+#include<bits/stdc++.h>
+using namespace std;
+
+
+ // } Driver Code Ends
+
+class Solution{
+    public:
+    
+    string modify (string s)
+    {
+        // your code here
+        string str = "";
+       for(int i = 0; i < s.size(); i++)
+       {
+           if(islower(s[0]))
+               str += tolower(s[i]);
+           else
+               str += toupper(s[i]);
+       }
+       return str;
+    }
+};
+
+// { Driver Code Starts.
+int main()
+{
+    int t; cin >> t;
+    while (t--)
+	{
+		string s; cin >> s;
+		Solution ob;
+		cout << ob.modify (s) << endl;
+	}
+}  // } Driver Code Ends
