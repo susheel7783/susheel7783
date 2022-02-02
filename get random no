@@ -1,0 +1,12 @@
+#include<iostream>
+using namespace std;
+
+int main(){
+    int range=3;
+    int count=2;
+    while(count--){
+        int no=rand()%range;
+        cout<<no<<" ";
+    }
+    cout<<endl;
+}
