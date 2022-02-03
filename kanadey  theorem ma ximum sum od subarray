@@ -1,0 +1,18 @@
+#include<bits/stdc++.h>
+using namespace std;
+//maximum sum of subarray
+int main(){
+    int a[]={-1,-2,3};
+    int n=3;
+ int cs=0;
+ int ms=0;
+    for(int i=0;i<n;i++){
+       cs=cs+a[i];
+       if(cs<0){
+       cs=0;
+       }
+       ms=max(ms,cs);
+    }
+    cout<<ms<<endl;
+    
+}
