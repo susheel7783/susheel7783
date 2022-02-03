@@ -1,0 +1,25 @@
+#include<bits/stdc++.h>
+using namespace std;
+//remove duplicate
+void removeDuplicate(char s[]){
+    int n=strlen(s);
+    if(n==0 || n==1){
+        return ;
+    }
+    int i=0;
+    for(int j=1;j<n;j++){
+        if(s[j]!=s[i]){
+            i++;
+            s[i]=s[j];
+        }
+    }
+    s[i+1]='\0';
+    return ;
+}
+int main(){
+   char a[100];
+   cin.getline(a,100);
+removeDuplicate(a);
+cout<<a;
+}
+  
