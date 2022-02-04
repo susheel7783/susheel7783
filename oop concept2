@@ -1,0 +1,60 @@
+#include<iostream>
+using namespace std;
+
+class car{
+    public:
+    string name;
+    int price;
+    int mileage;
+    car(){ //default contructor
+        cout<<"default contructor"<<endl;
+    }
+    car(string n,int p,int m){  //parametrized contructor
+        cout<<"parametrized contructor"<<endl;
+        name=n;
+        price=p;
+        mileage=m;
+    }
+    void print(){
+        cout<<"Name: "<<name<<endl;
+        cout<<"Price :"<<price<<endl;
+        cout<<"mileage :"<<mileage<<endl;
+    }
+};
+int main(){
+    // car A;
+    
+    // car C;
+      car A("Mercediis",1000,10);
+      car B;
+    // A.name="Mercediis";
+    // A.price=1000;
+    // A.mileage=10;
+    B.name="Bmw";
+    B.price=10000;
+    B.mileage=5;
+    // C.name="jaguar";
+    // C.price=500;
+    // C.mileage=50;
+    
+    // cout<<"Name: "<<A.name<<endl;
+    // cout<<"Price :"<<A.price<<endl;
+    // cout<<"mileage :"<<A.mileage<<endl;
+    // cout<<endl;
+    // cout<<"Name: "<<B.name<<endl;
+    // cout<<"Price :"<<B.price<<endl;
+    // cout<<"mileage :"<<B.mileage<<endl;
+    // cout<<endl;
+    // cout<<"Name: "<<C.name<<endl;
+    // cout<<"Price :"<<C.price<<endl;
+    // cout<<"mileage :"<<C.mileage<<endl;
+    A.print();
+    cout<<endl;
+    B.print();
+    A.name="Bmw2";
+    cout<<endl;
+    A.print();
+    // cout<<endl;
+    // C.print();
+}
+
