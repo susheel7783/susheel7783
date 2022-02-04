@@ -1,0 +1,67 @@
+#include<bits/stdc++.h>
+using namespace std;
+//queen problem
+bool isPossible(int board[10][10],int i,int j,int n){
+    for(int k=0;k<n;k++){
+        if(board[i][k]==1 || board[k][j]==1){
+            return false;
+        }
+    }
+    //check right dia
+int x=i;
+int y=j;
+while(i>=0 && j<n){
+    if(board[i][j]==1)
+        return false;
+        i--;
+        j++;
+    
+}
+    i=x,j=y;
+    //left diagonal
+    while(i>=0 && j>=0){
+        if(board[i][j]==1)
+        return false;
+        i--;
+        j--;
+    }
+    return true;
+}
+bool nQueen(int board[][10],int i,int n){
+   // base case
+    if(i==n){
+        for(int i=0;i<n;i++){
+            for(int j=0;j<n;j++){
+                cout<<board[i][j]<<" ";
+            }
+            cout<<endl;
+        }
+        cout<<endl;
+        return false;
+        //return 1;
+    }
+    //recursive case
+    for(int j=0;j<n;j++){
+        if(isPossible(board,i,j,n)){
+            board[i][j]=1;
+            bool kyaBakiMeRakhSaktaHu=nQueen(board,i+1,n);
+            if(kyaBakiMeRakhSaktaHu){
+                return true;
+            }
+            board[i][j]=0;
+        }
+    }
+    return false;
+}
+int main(){
+    int n=5;
+    int board[10][10];
+    for(int i=0;i<n;i++){
+        for(int j=0;j<n;j++){
+            cin>>board[i][j];
+        }
+    }
+    nQueen(board,0,n);
+        
+    
+}
