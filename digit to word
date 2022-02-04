@@ -1,0 +1,18 @@
+#include<bits/stdc++.h>
+using namespace std;
+// digit to word
+char word[][6]={"zero","one","two","three","four","five","six","seven","eight","nine"};
+void numToWord(int n){
+    if(n==0){
+        return;
+    }
+    numToWord(n/10);
+    int digit=n%10;
+    cout<<word[digit]<<" ";
+}
+int main(){
+ 
+ int n;
+ cin>>n;
+numToWord(n);
+}
