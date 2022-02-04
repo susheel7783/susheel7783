@@ -1,0 +1,46 @@
+#include<bits/stdc++.h>
+using namespace std;
+void allOccurence(int arr[],int n,int i,int val){
+    if(i==n){
+        return;
+    }
+    if(arr[i]==val){
+        cout<<i<<" ";
+    }
+    allOccurence(arr,n,i+1,val);
+}
+int firstOccurence(int arr[],int n,int i,int value){
+    if(i==n){
+        return -1;
+    }
+    if(arr[i]==value){
+        return i;
+    }
+    else{
+    int ans=firstOccurence(arr,n,i+1,value);
+    return ans;
+    }
+}
+int lastOcuurence(int arr[],int n,int i,int valu){
+    if(i==n){
+        return -1;
+    }
+    int ans=lastOcuurence(arr,n,i+1,valu);
+    if(ans!=-1){
+        return ans;
+    }
+   if(arr[i]==valu){
+       return i;
+   }
+    return -1;
+}
+int main(){
+    int arr[]={1,2,3,4,5,6,1,1};
+    int n=8;
+    int val=1;
+    allOccurence(arr,n,0,val);
+    cout<<endl;
+    cout<<firstOccurence(arr,n,0,val);
+    cout<<endl;
+    cout<<lastOcuurence(arr,n,0,val);
+}
