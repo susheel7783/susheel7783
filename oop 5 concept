@@ -1,0 +1,116 @@
+#include<iostream>
+using namespace std;
+
+class car{
+    public:
+    string name;
+    int price;
+    int mileage;
+    int *model;
+    car(){ //default contructor
+        cout<<"default contructor"<<endl;
+    }
+    car(string n,int p,int m,int *mo){  //parametrized contructor
+        cout<<"parametrized contructor"<<endl;
+        name=n;
+        price=p;
+        mileage=m;
+        model=new int[4]; //actually model is a big no
+        for(int i=0;i<4;i++){
+            model[i]=mo[i];
+        }
+    }
+    
+   // copy constructor  now this will give deep copy
+
+    car(car &X){ //this is made pass by value
+        name=X.name;
+        price=X.price;
+        mileage=X.mileage;
+        model=new int[4];
+        for(int i=0;i<4;i++){
+            model[i]=X.model[i];
+        }
+    }
+    //default copy assignment operator         //default operator
+    void operator =(car X){           //in this also shallo copy so we have to update it
+        cout<<"calling operator"<<endl;
+        name=X.name;
+        price=X.price;              //ise bhi modify kar diya gaya ab ye default constructor nahi hai
+        mileage=X.mileage;
+        model=new int[4];    //by this maine d ko change kia to only d hi vhange hua c nahi hua
+        for(int i=0;i<4;i++){
+            model[i]=X.model[i];
+    }
+    }
+    ~car(){
+        cout<<"calling destructor"<<endl;
+    }
+    void print(){
+        cout<<"Name: "<<name<<endl;
+        cout<<"Price :"<<price<<endl;
+        cout<<"mileage :"<<mileage<<endl;
+        cout<<"model :";
+        for(int i=0;i<4;i++){
+            cout<<model[i];
+        }
+        cout<<endl<<endl;
+    }
+    
+};
+int main(){
+    // car A;
+    
+    // car C;
+    int arr[]={1,2,3,4};
+      car A("Mercediis",1000,10,arr);
+      //car B;
+      car B("Bmw",500,15,arr);
+     
+    // A.name="Mercediis";
+    // A.price=1000;
+    // A.mileage=10;
+    // B.name="Bmw";
+    // B.price=10000;
+    // B.mileage=5;
+   //car D(B); //by this B will be copy on D both are same thing car D(B) or D=B;
+   //car D=B;    // by this it is also copying 
+   car C=B;
+   B.model[0]=9;  //let i am changig ist index of model
+   car D;
+   D=B;
+    // C.name="jaguar";
+    // C.price=500;
+    // C.mileage=50;
+    
+    // cout<<"Name: "<<A.name<<endl;
+    // cout<<"Price :"<<A.price<<endl;
+    // cout<<"mileage :"<<A.mileage<<endl;
+    // cout<<endl;
+    // cout<<"Name: "<<B.name<<endl;
+    // cout<<"Price :"<<B.price<<endl;
+    // cout<<"mileage :"<<B.mileage<<endl;
+    // cout<<endl;
+    // cout<<"Name: "<<C.name<<endl;
+    // cout<<"Price :"<<C.price<<endl;
+    // cout<<"mileage :"<<C.mileage<<endl;
+    D.model[3]=9;
+    A.print();
+    cout<<endl;
+    B.print();
+    cout<<endl;
+    C.print();
+    cout<<endl;
+    D.print();
+   // A.name="Bmw2";
+    //cout<<endl;
+    //A.print();
+    //D.print();
+    // cout<<endl;
+    // C.print();
+}
+
+
+
+
+
