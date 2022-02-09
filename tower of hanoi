@@ -1,0 +1,18 @@
+//tower of hanoi
+#include <bits/stdc++.h>
+using namespace std;
+void towerOfHanoi(int n,char source,char destination,char helper){
+    if(n==1){
+        cout<<"move 1st disc from "<<source<<" to "<<destination <<endl;
+        return;
+    }
+    towerOfHanoi(n-1,source,helper,destination);  //first n-1 plate put in helper with the help of destination
+    cout<<"move "<<n<<"th disc from "<<source<<" to "<<destination<<endl;//last plate remained on source move source to destination
+    towerOfHanoi(n-1,helper,destination,source);//n-1 plate are still remained on helper so move it from helper to destination with the help of source
+}
+int main(){
+    towerOfHanoi(3,'a','c','b');        //a-> source
+                                        // c->destination  
+                                         //b->helper
+}
+
