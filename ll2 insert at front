@@ -1,0 +1,71 @@
+#include <iostream>
+using namespace std;
+   class node{
+       public:
+       int data;
+       node*next;
+      node (int d){   //at the  place of this constructor
+          data=d;
+          next=NULL;
+      }
+   };
+      void insertAtfront(node *&head,node *&tail,int d){
+          node*n=new node(d);
+          if(head==NULL){   //if we have nothing we make a block n that will be head and tail both
+              head=n;
+              tail=n;
+}
+else{  //if we have already a block we will store address of head of that block in our new node
+    n->next=head;
+    head=n;
+}
+      }
+ 
+//  node(int data){
+//      this->data=data;
+//   next=NULL;
+//  }
+void insertAtend(node *&head,node *&tail,int d){
+    node*n=new node(d); 
+    if(head==NULL){
+        head=n;
+        tail=n;
+    }
+    else{
+        tail->next=n;
+        tail=n;
+    }
+}
+ 
+void print(node *head){
+    if(head==NULL){
+        return;
+    }
+    while(head!=NULL){
+    cout<<head->data<<"-->";
+    head=head->next;
+}
+ cout<<"NULL";
+ 
+}
+   
+   
+   int main(){
+       node*head=NULL;
+       node*tail=NULL;
+  insertAtfront(head,tail,1);
+  insertAtfront(head,tail,2);
+  insertAtfront(head,tail,3);
+  insertAtfront(head,tail,4);
+    print(head);
+    // cout<<endl;
+    // insertAtend(head,tail,1);
+    // insertAtend(head,tail,2);
+    // insertAtend(head,tail,3);
+    // insertAtend(head,tail,4);
+    // print(head);
+    
+   
+    
+    //cout<<a.data<<"-->"<<a.next->data<<"-->"<<a.next->next->data<<"-->NULL "<<endl;
+   }
