@@ -1,0 +1,30 @@
+#include <iostream>
+using namespace std;
+   class node{
+       public:
+       int data;
+       node*next;
+//       node (int d){   //at the  place of this constructor
+//           data=d;
+//           next=NULL;
+//       }
+
+ node(int data){
+     this->data=data;
+   next=NULL;
+ }
+   };  
+
+   
+   
+   int main(){
+   
+    node a(12);
+    node*head=&a;      //save address of a in head pointer
+    node b(22);
+    node c(33);
+    //linking 
+    a.next=&b;
+    b.next=&c;
+    cout<<a.data<<"-->"<<a.next->data<<"-->"<<a.next->next->data<<"-->NULL "<<endl;
+   }
