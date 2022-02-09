@@ -1,0 +1,100 @@
+#include <iostream>
+using namespace std;
+   class node{
+       public:
+       int data;
+       node*next;
+      node (int d){   //at the  place of this constructor
+          data=d;
+          next=NULL;
+      }
+   };
+   int length(node*head){       //to find the length of linked list
+       int i=0;
+       while(head!=NULL){
+           head=head->next;
+           i++;
+       }
+       return i;
+   }
+      void insertAtfront(node *&head,node *&tail,int d){
+          node*n=new node(d);
+          if(head==NULL){   //if we have nothing we make a block n that will be head and tail both
+              head=n;
+              tail=n;
+}
+else{  //if we have already a block we will store address of head of that block in our new node
+    n->next=head;
+    head=n;
+}
+      }
+ 
+//  node(int data){
+//      this->data=data;
+//   next=NULL;
+//  }
+void insertAtend(node *&head,node *&tail,int d){
+    node*n=new node(d); 
+    if(head==NULL){  //if we have no blockthen
+        head=n;
+        tail=n;
+    }
+    else{   //when we have  some blocks 
+        tail->next=n;
+        tail=n;
+    }
+}
+void insertAtMiddle(node *&head,node *&tail,int d,int pos){
+    if(pos<=0){
+        insertAtfront(head,tail,d);
+    }
+    else if(pos>=length(head)){
+        insertAtend(head,tail,d);
+    }
+    else{
+        node *n=new node(d);
+        node*temp=head;
+        int i=0;
+        while(i<pos){
+            temp=temp->next;
+            i++;
+        }
+        n->next=temp->next;
+        temp->next=n;
+    }
+}
+ 
+void print(node *head){
+    if(head==NULL){
+        return;
+    }
+    while(head!=NULL){
+    cout<<head->data<<"-->";
+    head=head->next;
+}
+ cout<<"NULL";
+ 
+}
+   
+   
+   int main(){
+       node*head=NULL;
+       node*tail=NULL;
+//   insertAtfront(head,tail,1);
+//   insertAtfront(head,tail,2);
+//   insertAtfront(head,tail,3);
+//   insertAtfront(head,tail,4);
+//     // print(head);
+    // //cout<<endl;
+    insertAtend(head,tail,1);
+    insertAtend(head,tail,2);
+    insertAtend(head,tail,3);
+    insertAtend(head,tail,4);
+    // print(head);
+    // cout<<endl;
+    //cout<<"lenght :"<<length(head);
+    insertAtMiddle(head,tail,6,2);
+    print(head);
+    
+    //cout<<a.data<<"-->"<<a.next->data<<"-->"<<a.next->next->data<<"-->NULL "<<endl;
+   }
