@@ -1,0 +1,22 @@
+//printing increasibg order  and  decreasing order by recursion
+#include <bits/stdc++.h>
+using namespace std;
+void print_inc(int n){
+    if(n==0){
+        return;
+    }
+    print_inc(n-1);
+    cout<<n<<" ";
+}
+void print_dec(int n){
+    if(n==0){
+        return ;
+    }
+    cout<<n<<" ";
+    print_dec(n-1);
+}
+int main(){
+    print_inc(10);
+    cout<<endl;
+    print_dec(10);
+}
