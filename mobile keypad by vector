@@ -1,0 +1,28 @@
+//mobile keypad 
+#include<bits/stdc++.h>
+using namespace std;
+void print_keypad(int n,string output,string input[],vector<string>&ans){
+    if(n==0){
+        ans.push_back(output);
+        return;
+    }
+   
+    int last_digit=n%10;
+    //int curren_keyPressed=string[index]-'0';
+    string s1=input[last_digit];
+    for(int i=0;i<s1.length();i++){
+        print_keypad(n/10,s1[i]+output,input,ans);
+    }
+}
+int main(){
+    string keys[10]={"","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};   
+    int n;
+    cin>>n;
+    string output="";
+    vector<string>ans;
+    print_keypad(n,output,keys,ans);
+    sort(ans.begin(),ans.end());// I have sorted to get ans in dictionary order
+    for(int i=0;i<ans.size();i++){
+        cout<<ans[i]<<endl;
+    }
+}
