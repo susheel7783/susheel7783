@@ -1,0 +1,132 @@
+// linked list 
+#include <bits/stdc++.h>
+using namespace std;
+class node{
+    public:
+    int data;
+    node*next;
+    node(int d){
+        data=d;
+        next=NULL;
+    }
+};
+
+int length(node*head){
+    int i=0;
+    while(head!=NULL){
+        head=head->next;
+        i++;
+    }
+    return i;
+}
+// insertAtStart
+void insertAtStart(node*&head,node*&tail,int d){
+    node*n=new node(d);
+    if(head==NULL){
+    head=n;
+    tail=n;
+    }
+    else{
+    n->next=head;
+    head=n;
+    }
+}
+// insertAtend
+void insertAtend(node*&head,node*&tail,int d){
+    node*n=new node(d);
+    if(head==NULL){
+        head=n;
+        tail=n;
+    }
+    else{
+        tail->next=n;
+        n->next=NULL;
+        tail=n;
+    }
+}
+// 3 way to print output
+void print(node*head){
+    if(head==NULL){
+        return;
+    }
+    while(head!=NULL){
+        cout<<head->data<<"-->";
+        head=head->next;
+    }
+    cout<<"NULL";
+}
+void insertAtMiddle(node*&head,node*&tail,int d,int pos){
+    node*n=new node(d);
+    if(pos<=0){
+        insertAtStart(head,tail,d);
+    }
+    if(pos>=length(head)){
+        insertAtend(head,tail,d);
+    }
+    else{
+        node*temp=head;
+        int i=0;
+        while(i<pos-1){
+            temp=temp->next;
+            i++;
+        }
+        n->next=temp->next;
+        temp->next=n;
+    }
+    }
+
+int main() {
+    node*head=NULL;
+    node*tail=NULL;
+// node a(1);
+// node b(2);
+// node c(3);
+// node d(4);
+// node*head=&a;
+// a.next=&b;
+// b.next=&c;
+// c.next=&d;
+// insertAtStart(head,tail,1);
+// insertAtStart(head,tail,2);
+// insertAtStart(head,tail,3);
+// insertAtStart(head,tail,4);
+// print(head);
+// cout<<endl;
+// cout<<endl;
+// insertAtStart(head,tail,5);
+// insertAtStart(head,tail,6);
+// insertAtStart(head,tail,7);
+// insertAtStart(head,tail,8);
+// insertAtStart(head,tail,9);
+// insertAtStart(head,tail,10);
+// insertAtStart(head,tail,11);
+// insertAtStart(head,tail,12);
+//to insert at end
+// insertAtend(head,tail,1);
+// insertAtend(head,tail,2);
+// insertAtend(head,tail,3);
+// insertAtend(head,tail,4);
+// print(head);
+// cout<<endl;
+// cout<<endl;
+//for insertAtMiddle
+insertAtend(head,tail,1);
+insertAtend(head,tail,2);
+insertAtend(head,tail,3);
+insertAtend(head,tail,4);
+insertAtMiddle(head,tail,5,2);
+print(head);
+cout<<endl;
+cout<<length(head);
+// cout<<endl;
+// 1st way to print output
+// cout<<head->data<<"-->"<<head->next->data<<"-->"<<head->next->next->data<<"-->"<<head->next->next->next->data<<"-->NULL";
+// cout<<endl;
+// 2 way to print output
+// for(int i=0;i<4;i++){
+//     cout<<head->data<<"-->";
+//     head=head->next;
+// }
+//  cout<<"NULL";
+	return 0;
+}
