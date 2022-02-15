@@ -1,0 +1,105 @@
+#include<bits/stdc++.h>
+using namespace std;
+class node{
+    public:
+    int data;
+    node*next;
+    node(int d){
+        data=d;
+        next=NULL;
+    }
+};
+//insert at start
+void insertAtFront(node*&head,int d){
+    node*n=new node(d);
+    if(head==NULL){
+        head=n;
+        
+    }
+    else{
+    n->next=head;
+    head=n;
+    }
+}
+// print 
+void print(node*head){
+    while(head!=NULL){
+        
+        cout<<head->data<<"-->";
+        head=head->next;
+    }
+    cout<<"NULL";
+}
+// reverse
+void reverse(node*&head){
+    if(head==NULL || head->next==NULL){
+        return;
+    }
+    else{
+        node*p=NULL;
+        node*c=head;
+        while(c!=NULL){
+            node*n=c->next;
+            c->next=p;
+            p=c;
+            c=n;
+        }
+        head=p;
+    }
+}
+//crate cycle
+void crateCycle(node*head){    //we can not not print cycle because head will not get NULL
+    node*temp=head;
+    while(head->next!=NULL){
+        head=head->next;
+    }
+    head->next=temp->next;
+}
+// check llist is cyclick
+bool cyclick(node*head){
+    if(head==NULL || head->next==NULL){
+        return 0;
+    }
+    node*f=head->next,*s=head;
+    while(f!=NULL && f->next!=NULL){
+        if(f==s){
+            return 1;
+        }
+        f=f->next->next;
+        s=s->next;
+    }
+    return 0;
+    
+}
+int main(){
+    node*head=NULL;
+    // node*tail=NULL;
+    insertAtFront(head, 1);
+    insertAtFront(head, 2);
+    insertAtFront(head, 3);
+    insertAtFront(head, 4);
+    insertAtFront(head, 5);
+    insertAtFront(head, 6);
+    insertAtFront(head, 7);
+    // insertAtFront(head, 8);
+    //  print(head);
+    //  cout<<endl;
+    //  reverse(head);
+    //  print(head);
+    //  cout<<endl;
+    // reverse(head);
+    // crateCycle(head);
+    // print(head);
+    // reverse(head);
+    // print(head);
+    // cout<<endl;
+    // crateCycle(head);
+    if(cyclick(head)){
+     cout<<"YES";   
+    }
+    else{
+        cout<<"NO";
+    }
+  
+    //cout<<head->data<<"-->"<<head->next->data<<"-->"<<head->next->next->data<<"-->NULL";
+}
