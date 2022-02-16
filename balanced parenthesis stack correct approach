@@ -1,0 +1,37 @@
+//balanced bracket
+#include<iostream>
+#include<stack>
+using namespace std;
+int main(){
+    string arr="{[()]}";
+    stack<char>st;
+    bool f=0;   //means balanced h
+      for(int i=0;i<arr.size();i++){
+       if(arr[i]=='{' || arr[i]=='(' || arr[i]=='[') //if opening bracket hai to stack me dal do
+       st.push(arr[i]);
+      if(arr[i]==')'){
+          if(!st.empty() && st.top()=='(')
+          st.pop();
+          else
+          f=1;// means balance na ha
+      }
+
+if(arr[i]=='}'){
+if(!st.empty() && st.top()=='{')
+st.pop();
+else
+f=1;
+}
+if(arr[i]==']'){
+    if(!st.empty() && st.top()=='[' )
+    st.pop();
+    else
+    f=1;
+}
+}
+if(st.empty() && !f){
+    cout<<"balanced";
+}else{
+    cout<<"not balanced";
+}
+}
