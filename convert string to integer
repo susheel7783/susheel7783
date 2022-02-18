@@ -1,0 +1,21 @@
+//Take as input str, a number in form of a string. 
+//Write a recursive function to convert the number in string form to number in integer form. E.g. for “1234” return 1234. 
+//Print the value returned.
+
+#include<bits/stdc++.h>
+#include<string>
+using namespace std;
+int stringToInt(string str,int i){
+      if(i==str.length()){
+            return 0;
+      }
+      int ans=(str[i]-'0')*pow(10,str.length()-i-1);
+      return ans+stringToInt(str,i+1);
+}
+int main(){
+      string s;
+      cin>>s;
+      cout<<stringToInt(s,0);
+}
+
+  
