@@ -1,0 +1,43 @@
+//Input Format
+//Single line input containing a single integer.
+//
+//Constraints
+//1 <= Length of string <= 10^3
+//
+//Output Format
+//Print all the words in a space separated manner. Also print the count of these numbers in next line.
+//
+//Sample Input
+//12
+//Sample Output
+//ad ae af bd be bf cd ce cf
+//9
+#include <bits/stdc++.h>
+using namespace std;
+string keys[10]={"","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
+void phoneKeypad(string ip,string op,int i,vector<string>&ans){
+      int n=ip.length();
+      if(i==n){
+            ans.push_back(op);
+            return;
+      }
+      int no_pressed=ip[i]-'0';
+      string s=keys[no_pressed];
+      for(int j=0;j<s.size();j++){
+            char ch=s[j];
+            phoneKeypad(ip,op+ch,i+1,ans);
+      }
+}
+int main() {
+	string ip;
+	cin>>ip;
+	string op="";
+	vector<string>ans;
+	phoneKeypad(ip,op,0,ans);
+	for(int i=0;i<ans.size();i++){
+	      cout<<ans[i]<<" ";
+	}
+	cout<<endl;
+	cout<<ans.size();
+	return 0;
+}
