@@ -1,0 +1,83 @@
+
+//Sample Input
+//1
+//4
+//1 3 5 7
+//3
+//2 4 6
+//Sample Output
+//1 2 3 4 5 6 7 
+#include<bits/stdc++.h>
+using namespace std;
+class node{
+	public:
+	node*next;
+	int data;
+	node(int d){
+		data=d;
+		next=NULL;
+	}
+};
+void insertAtEnd(node*&head,node*&tail,int d){
+       node*n=new node(d);
+       if(head==NULL){
+             head=tail=n;
+             return;
+       }else{
+		   tail->next=n;
+		   tail=n;
+	   }
+}
+node*mergeLL(node*&head1,node*&head2){
+if(head1==NULL){
+	return head2;
+}
+if(head2==NULL){
+	return head1;
+}
+node*nh=NULL;
+if(head1->data<head2->data){
+nh=head1;
+nh->next=mergeLL(head1->next,head2);
+}
+else{
+	nh=head2;
+	nh->next=mergeLL(head1,head2->next);
+}
+return nh;
+}
+
+void print(node*&head){
+	if(head==NULL){
+		return ;
+	}
+	while(head!=NULL){
+		cout<<head->data<<" ";
+		head=head->next;
+	}
+	cout<<endl;
+}
+int main() {
+int t;
+cin>>t;
+while(t--){
+	int n,m;
+	cin>>n;
+	int a;
+	node*head1=NULL;
+	node*tail1=NULL;
+	for(int i=0;i<n;i++){
+		cin>>a;
+		insertAtEnd(head1,tail1,a);
+	}
+	cin>>m;
+	node*head2=NULL;
+	node*tail2=NULL;
+	for(int i=0;i<m;i++){
+		cin>>a;
+		insertAtEnd(head2,tail2,a);
+	}
+	node*ans=mergeLL(head1,head2);
+	print(ans);
+}	
+}
