@@ -1,0 +1,236 @@
+// tree
+#include<iostream>
+#include<queue>
+using namespace std;
+//8 10 1 -1 -1 6 4 -1 -1 7 -1 -1 3 -1 4 13 -1 -1 -1
+class node{
+public:
+	int data;
+	node*left;
+	node*right;
+   node(int d){
+   	data=d;
+   	left=NULL;
+   	right=NULL;
+   }
+};
+node*ct(){
+	node*root=NULL;
+	int data; 
+	cin>>data;
+	if(data==-1){
+		return root;
+	}
+	root=new node(data);
+	root->left=ct();
+	root->right=ct();
+	return root;
+}
+void pre(node*root){
+	if(root==NULL){
+		return;
+	}
+	cout<<root->data<<" ";
+	pre(root->left);
+	pre(root->right);
+}
+//no of nodes
+int countNodes(node*root){
+	if(root==NULL){
+		return 0;
+	}
+	else{
+		return countNodes(root->left)+countNodes(root->right)+1;
+	}
+}
+int height(node*root){
+	if(root==NULL){
+		return 0;
+	}
+	else{
+		return max(height(root->left),height(root->right))+1;
+	}
+}
+//diameter of  tree
+int dia(node*root){
+	if(root==NULL){
+		return 0;
+	}
+	int op1=height(root->left)+height(root->right);
+	int op2=height(root->left);
+	int op3=height(root->right);
+	return max(op1,max(op2,op3));
+}
+//searching 
+node* search(node*root,int k){
+	if(root==NULL){
+		return NULL;
+	}
+	if(root->data==k){
+		return root;
+	}
+	node*left=search(root->left,k);
+	if(left){
+		return left;
+	}
+	else{
+		node*right=search(root->right,k);
+		return right;
+	}
+}
+//mirror of tree
+void mirrorTree(node*root){
+	if(root==NULL){
+		return;
+	}
+	swap(root->left,root->right);
+	mirrorTree(root->left);
+	mirrorTree(root->right);
+}
+// level order traversal
+void levelOrderTraversal(node* root) {
+
+	queue<node*> q;
+
+	q.push(root);
+	q.push(NULL);
+
+
+	while (!q.empty()) {
+
+		node* p = q.front();
+		q.pop();
+
+		if (p != NULL) {
+
+			cout << p->data << " ";
+			if (p->left != NULL) {
+				q.push(p->left);
+			}
+			if (p->right != NULL)
+				q.push(p->right);
+
+		} else { // address from the queue I have got is NULL
+
+			cout << endl;
+			if (!q.empty()) {
+				q.push(NULL);
+			}
+
+		}
+	}
+
+}
+//create BST
+node* insertInBst(node*root,int value){
+	if(root==NULL){
+		root=new node(value);
+		return root;
+}
+if(root->data<value){
+	root->right= insertInBst(root->right,value);
+}
+else
+	root->left= insertInBst(root->left,value);
+return root;
+}
+
+node* createBST()
+{
+
+	int noOfNodes;
+	cin >> noOfNodes;
+
+	node* root = NULL;
+
+	for (int i = 1; i <= noOfNodes; i++) {
+
+		int value;
+		cin >> value;
+		root = insertInBst(root, value);
+	}
+
+	return root;
+}
+//making tree
+int arr[] = {1, 2, 8, 9, 10, 11, 12};
+int n = 7;
+
+node* makeTree(int s, int e) {
+
+	if (s > e) {
+		return NULL;
+	}
+	int mid = (s + e) / 2;
+	node* root = new node(arr[mid]);
+	// LST
+	root->left = makeTree(s, mid - 1);
+
+	// RST
+	root->right = makeTree(mid + 1, e);
+	return root;
+}
+
+// search in BST
+bool isPresent(node*root,int value){
+if(root==NULL){
+	return false;
+}
+if(root->data==value)
+return true;
+if(root->data<value){
+	return isPresent(root->right,value);
+}
+else
+return isPresent(root->left,value);
+}
+// check a Binary search tree is balanced
+bool isBalance(node*root){
+	if(root==NULL){
+		return true;
+	}
+	int leftheight=height(root->left);
+	int rightheight=height(root->right);
+	if(abs(leftheight-rightheight)<=1 && isBalance(root->left) && isBalance(root->right)){
+		return true;
+	} 
+	return false;
+}
+int main(){
+	
+	node*root=createBST();
+	levelOrderTraversal(root);
+	cout<<endl;
+	if(isPresent(root,18)){
+		cout<<"found";
+	}else{
+		cout<<"not present";
+	}
+	cout<<endl;
+	if(isBalance(root)){
+		cout<<"balanced";
+	}
+	else{
+		cout<<"not balanced";
+	}
+	// node*root=ct();
+	// levelOrderTraversal(root);
+	// pre(root);
+	// cout<<endl;
+	// cout<<"mirrorTree :";
+	// mirrorTree(root);
+	// pre(root);
+	// cout<<endl;
+	// cout<<"no of nodes: "<<countNodes(root)<<endl;
+	// cout<<"height: "<<height(root)<<endl;
+	// cout<<"diameter of tree: "<<dia(root)<<endl;
+	// if(search(root,6)){
+	// 	cout<<"found k:"<<search(root,6)->data<<endl;
+	// }
+	// 	else
+	// 		cout<<"not found";
+	// 	cout<<endl;
+		
+
+	} 
+
