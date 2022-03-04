@@ -1,0 +1,38 @@
+//Letter Combinations of a Phone Number
+
+class Solution {
+public:
+    void solve(string digit,string output,string key[],int index,vector<string>&ans){
+       
+        //base case
+        if(index>=digit.size()){
+            ans.push_back(output);
+            return ;
+        }
+       
+        
+        int number=digit[index]-'0';
+        string mila=key[number];
+        for(int i=0;i<mila.size();i++){
+            output.push_back(mila[i]);
+            solve(digit,output,key,index+1,ans);
+            output.pop_back();
+        }
+        
+    }
+    
+    vector<string> letterCombinations(string digits) {
+        vector<string>ans;
+        if(digits.size()==0){
+            return ans;
+        }
+        string output="";
+        int ind=0;
+        string key[10]={"","","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
+        solve(digits,output,key,ind,ans);
+        return  ans;
+    }
+};
+
+
+
