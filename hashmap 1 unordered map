@@ -1,0 +1,14 @@
+// hashmap.cpp
+#include<iostream>
+#include<unordered_map>
+using namespace std;
+
+int main(){
+	unordered_map<string,int>m;
+m["mango"]=10;
+m["apple"]=30;
+m.insert({"pineapple",5});
+for(auto i:m){
+	cout<<i.first<<" "<<i.second<<endl;
+}
+}
