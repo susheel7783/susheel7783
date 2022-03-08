@@ -1,0 +1,24 @@
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+          int left=0;
+        int right=0;  // initially both start from 0 when unique char then left++
+        int max=0;
+        set<char>Set;  // making set to store the char
+        while(left<s.size()){
+            auto it=Set.find (s[left]);  //it check that current char is present in the set or not
+            if(it==Set.end()){   // if current element not present means unique char
+                //length of string =left-right+1
+                if(left-right+1>max)   //update length of substring
+                    max=left-right+1;
+                Set.insert(s[left]);// unique then insert in set
+                left++;  // move left to next position
+            }
+            else{
+                Set.erase(s[right]);  //if repeating char then erase that from Set
+                right++;  // erase them and move right to next position. 
+            }
+        }
+        return max;
+    }
+};
