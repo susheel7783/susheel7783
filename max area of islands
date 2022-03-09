@@ -1,0 +1,47 @@
+class Solution {
+public:
+    //make a function we can move or not 
+    bool isValid(vector<vector<int>>& grid,int i,int j,int n,int m){
+        if(i>=0 && i<n && j>=0 && j<m && grid[i][j]==1){ //we can move oi the grid only when i>=0 && i<n && j>=0 && j<m && grid[i][j]==1
+            
+return true;
+        }
+        return false;
+    }
+    
+    //using a function dfs 
+    void dfs(vector<vector<int>>& grid,int i,int j,int n,int m,int &area){
+        area++;  // when moves area++
+        grid[i][j]=0; // after moving make that grid 0
+        
+        //for 4 directional we have to  check in horizontal and vertical movement one by one  i,i+1,j,j+1
+        if(isValid(grid,i+1,j,n,m)){   
+            dfs(grid,i+1,j,n,m,area);
+        }
+        if(isValid(grid,i-1,j,n,m)){
+            dfs(grid,i-1,j,n,m,area);
+        }
+        if(isValid(grid,i,j+1,n,m)){
+            dfs(grid,i,j+1,n,m,area);
+        }
+        if(isValid(grid,i,j-1,n,m)){
+            dfs(grid,i,j-1,n,m,area);
+        }
+    }
+    int maxAreaOfIsland(vector<vector<int>>& grid) {
+        int n=grid.size(); //no of rows
+        int m=grid[0].size(); //no of columns
+        int ans=0;
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                if(grid[i][j]==1){
+                    int area=0;
+                    dfs(grid,i,j,n,m,area); // call dfs
+                    ans=max(area,ans);
+           }
+                
+            }
+        }
+        return ans;
+    }
+};
