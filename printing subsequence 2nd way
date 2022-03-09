@@ -1,0 +1,25 @@
+// rec.cpp
+#include<iostream>
+using namespace std;
+void subsequence(char*in,char*op,int i,int j){
+	if(in[i]=='\0'){
+		op[j]='\0';
+		cout<<op<<" ";
+		return;
+	}
+	//include
+	op[j]=in[i];
+	subsequence(in,op,i+1,j+1);
+	//not include
+	subsequence(in,op,i+1,j);
+
+}
+
+int main(){
+char in[10];
+cin>>in;
+char op[10];
+subsequence(in,op,0,0);
+	
+
+}
