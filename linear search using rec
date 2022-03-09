@@ -1,0 +1,16 @@
+// rec.cpp
+#include<iostream>
+using namespace std;
+int LinearSearch(int arr[],int n,int i,int key){
+	if(i==n){
+		return -1;
+	}
+	if(arr[i]==key){
+		return i;
+	}
+	return LinearSearch(arr,n,i+1,key);
+}
+int main(){
+	int arr[]={1,2,3,4,5,6};
+	cout<<LinearSearch(arr,6,0,2);
+}
