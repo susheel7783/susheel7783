@@ -1,0 +1,70 @@
+class Solution {
+public:
+      const int val[13]={1000,900,500,400,100,90,50,40,10,9,5,4,1};
+        const string rom[13]={"M","CM","D","CD","C","XC","L","XL","X","IX","V","IV","I"};
+    
+    string intToRoman(int n) {
+        string ans="";
+        for(int i=0;n;i++)
+            while(n>=val[i]) ans+=rom[i],n=n-val[i];
+                
+        return ans;
+    
+        // while(num>=1000){
+        //     rom=rom+'M';
+        //     num-=1000;
+        // }
+        // while(num>=900){
+        //     rom=rom+"CM";
+        //     num-=900;
+        // }
+        // while(num>=500){
+        //     rom=rom+'D';
+        //     num-=500;
+        // }
+        // while(num>=400){
+        //     rom=rom+"CD";
+        //     num-=400;
+        // }
+        // while(num>=100){
+        //     rom=rom+'C';
+        //     num-=100;
+        // }
+        // while(num>=90){
+        //     rom=rom+"XC";
+        //     num-=90;
+        // }
+        // while(num>=50){
+        //     rom=rom+'L';
+        //     num-=50;
+        // }
+        // while(num>=40){
+        //     rom=rom+"XL";
+        //     num-=40;
+        // }
+        // while(num>=10){
+        //     rom=rom+'X';
+        //     num-=10;
+        // }
+        // while(num>=9){
+        //     rom=rom+"IX";
+        //     num-=9;
+        // }
+        // while(num>=5){
+        //     rom=rom+'V';
+        //     num-=5;
+        // }
+        // while(num>=4){
+        //     rom=rom+"IV";
+        //     num-=4;
+        // }
+        // while(num>=1){
+        //     rom=rom+'I';
+        //     num-=1;
+        // }
+        // return rom;
+        
+      
+        
+    }
+};
