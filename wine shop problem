@@ -1,0 +1,20 @@
+#include<bits/stdc++.h>
+using namespace std;
+int Solve(int *cost,int i,int j,int day){
+      if(i>j)
+            return 0;
+      
+      int op1=cost[i] * day + Solve(cost,i+1,j,day+1);
+      int op2=cost[j] * day + Solve(cost,i,j-1,day+1);
+      return max(op1,op2);
+}
+
+int main(){
+      int n;
+      cin>>n;
+      int arr[n];
+      for(int i=0;i<n;i++){
+            cin>>arr[i];
+      }
+      cout<<Solve(arr,0,n-1,1);
+}
