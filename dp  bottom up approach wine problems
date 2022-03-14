@@ -1,0 +1,49 @@
+#include <bits/stdc++.h>
+using namespace std;
+int memo[100][100]={};  // initalising memo for dp use if i will put 0 here then it will 
+int wineProb(int *cost,int i,int j,int day){ //be initalised with 0 but we have to initalise
+      if(i>j){           //with -1 so put empty
+            return 0;
+      }
+      if(memo[i][j]!=-1){   // applying dp
+            return memo[i][j];
+      }
+      int op1=cost[i]*day+wineProb(cost,i+1,j,day+1);
+      int op2=cost[j]*day+wineProb(cost,i,j-1,day+1);
+      return memo[i][j]= max(op1,op2);
+}
+int bottomwine(int *cost,int n){
+     int dp[100][100]={};
+      for(int i=0;i<n;i++){   // diagonal case
+            dp[i][i]=cost[i]*n;
+      }
+      for(int i=n-2;i>=0;i--){
+            for(int j=0;j<n;j++){
+                 if(i<j){    //then we have to do something
+                 int day=n-(j-i);
+                 int op1=cost[i]*day+dp[i+1][j];
+                 int op2=cost[j]*day+dp[i][j-1];
+                 dp[i][j]=max(op1,op2);
+                 }
+            }
+      }
+      return dp[0][n-1];
+}
+
+int main(){
+      int n;
+      cin>>n;
+      int arr[n];
+      for(int i=0;i<n;i++){
+            cin>>arr[i];
+      }
+      //initalising the memo
+      for(int i=0;i<100;i++){
+            for(int j=0;j<100;j++){
+                  memo[i][j]=-1;
+            }
+      }
+      cout<<wineProb(arr,0,n-1,1);
+      cout<<endl;
+      cout<<bottomwine(arr,n);
+}
