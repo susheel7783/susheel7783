@@ -1,0 +1,32 @@
+class Solution {
+public:
+    
+    int helper(string &s1,string &s2,int m,int n,int memo[][1001]){
+    
+        
+        if(m==0 || n==0){
+            return 0;
+        }
+        if(memo[m][n]!=-1){
+            return memo[m][n];
+        }
+        if(s1[m-1]==s2[n-1]){
+            return memo[m][n]= helper(s1,s2,m-1,n-1,memo)+1;
+        }
+        return memo[m][n]= max(helper(s1,s2,m-1,n,memo),helper(s1,s2,m,n-1,memo));
+    }
+    
+    int longestCommonSubsequence(string s1, string s2) {
+        int memo[1001][1001];
+        int m =s1.size();
+        int n=s2.size();
+        for(int i=0;i<1001;i++){
+            for(int j=0;j<1001;j++){
+                memo[i][j]=-1;        
+            }
+        }
+        return helper(s1,s2,m,n,memo);
+    }
+    
+    
+};
