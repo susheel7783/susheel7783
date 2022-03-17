@@ -1,0 +1,42 @@
+
+
+import java.util.*;
+
+
+
+
+class Main
+{
+	public static void main (String[] args) 
+	{
+	      
+	      //op
+// 		System.out.println("Hello World");
+// 		System.out.print("Hare Krishna \n");
+// 		System.out.print("Har Har Mahadev");
+  // System.out.println("Hello World \nRam");
+//   System.out.println("*");
+//   System.out.println("**");
+//   System.out.println("***");
+//   System.out.println("****");
+// int a=25;
+// int b=20;
+// int c=a+b;
+
+// System.out.println(c);
+// int mul=a*b;
+// System.out.print(mul);
+
+//ip
+Scanner sc=new Scanner(System.in);  //for takifng  ip
+// String name=sc.next();
+// System.out.println(name);
+
+// String name1=sc.nextLine();
+// System.out.println(name1);
+int p=sc.nextInt();
+int q=sc.nextInt();
+int sum=p+q;
+System.out.println(sum);
+	}
+}
