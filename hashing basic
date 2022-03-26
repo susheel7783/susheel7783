@@ -1,0 +1,48 @@
+#include <iostream>
+#include<unordered_set>
+using namespace std;
+
+int main(){
+      unordered_set<int>s; // unordered_set does not store duplicate value
+      s.insert(10);
+      s.insert(15);
+      s.insert(20);
+      s.insert(25);
+      s.insert(10);
+      
+      for(auto it=s.begin();it!=s.end();it++)
+            cout<<(*it)<<endl;
+            int key=5;
+      cout<<"no of element:"<<s.size()<<endl;
+      if(s.find(key)==s.end()){
+            cout<<"not found"<<endl;
+      }
+      else{
+            cout<<"found"<<endl;
+      }
+int key2=15;
+auto temp=s.find(key2);  // 2nd way to erase a particular element
+s.erase(temp);
+
+int key3=20;
+if(s.find(key3)==s.end()){  //3rd way of erase a particular element
+      cout<<"not found"<<endl;
+}
+else{
+      s.erase(key3);
+}
+      //s.clear(); //clear all the element
+      //cout<<"no of element:"<<s.size()<<endl;
+      int deleted_key=25;
+      s.erase(deleted_key);  //25 will get deleted
+      for(auto it=s.begin();it!=s.end();it++)
+            cout<<(*it)<<endl;
+            cout<<"no of element:"<<s.size()<<endl;
+            
+            if(s.count(10))
+            cout<<"key is found"<<endl;
+            else
+            cout<<" key is not found"<<endl;
+            
+	return 0;
+}
